@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">SlideActionViewDemo</string>
+    <string name="slider_description">Slide to right or left</string>
+    <string name="slider_left_description">Slide to answer</string>
+    <string name="slider_right_description">Slide to hangup</string>
+</resources>

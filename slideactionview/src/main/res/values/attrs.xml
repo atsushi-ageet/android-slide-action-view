@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SlideActionView">
+        <attr name="slideactionview_sliderBackground" format="reference" />
+        <attr name="slideactionview_sliderLeft" format="reference" />
+        <attr name="slideactionview_sliderRight" format="reference" />
+        <attr name="slideactionview_sliderDescription" format="string|reference" />
+        <attr name="slideactionview_sliderLeftDescription" format="string|reference" />
+        <attr name="slideactionview_sliderRightDescription" format="string|reference" />
+        <attr name="slideactionview_paddingLeftFactor" format="float|reference" />
+        <attr name="slideactionview_paddingRightFactor" format="float|reference" />
+    </declare-styleable>
+</resources>
