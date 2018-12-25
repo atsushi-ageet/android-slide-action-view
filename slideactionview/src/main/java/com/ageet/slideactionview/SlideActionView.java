@@ -335,7 +335,7 @@ public class SlideActionView extends View {
     }
 
     public void setSliderBackgroundDrawable(Drawable drawable) {
-        sliderBg.drawable = drawable;
+        sliderBg.drawable = drawable.mutate();
     }
 
     public void setSliderLeftDrawable(int drawableId) {
@@ -343,7 +343,7 @@ public class SlideActionView extends View {
     }
 
     public void setSliderLeftDrawable(Drawable drawable) {
-        sliderL.drawable = drawable;
+        sliderL.drawable = drawable.mutate();
     }
 
     public void setSliderRightDrawable(int drawableId) {
@@ -351,7 +351,7 @@ public class SlideActionView extends View {
     }
 
     public void setSliderRightDrawable(Drawable drawable) {
-        sliderR.drawable = drawable;
+        sliderR.drawable = drawable.mutate();
     }
 
     public void setSliderDescription(int descriptionId) {
