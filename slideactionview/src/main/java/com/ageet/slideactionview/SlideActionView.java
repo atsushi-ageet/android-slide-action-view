@@ -295,6 +295,10 @@ public class SlideActionView extends View {
         sliderR.listener = rightSliderListener;
     }
 
+    public SlideActionView(Context context) {
+        super(context);
+    }
+
     public SlideActionView(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SlideActionView);
