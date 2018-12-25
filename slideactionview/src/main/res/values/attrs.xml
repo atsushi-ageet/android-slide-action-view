@@ -9,5 +9,6 @@
         <attr name="slideactionview_sliderRightDescription" format="string|reference" />
         <attr name="slideactionview_paddingLeftFactor" format="float|reference" />
         <attr name="slideactionview_paddingRightFactor" format="float|reference" />
+        <attr name="slideactionview_enableCompleteAnimation" format="boolean|reference" />
     </declare-styleable>
 </resources>
