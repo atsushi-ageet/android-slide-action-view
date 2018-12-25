@@ -23,8 +23,6 @@ import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
 import android.util.TypedValue;
 
 class TextDrawable extends Drawable {
@@ -48,7 +46,7 @@ class TextDrawable extends Drawable {
         mIntrinsicHeight = mPaint.getFontMetricsInt(null);
     }
     @Override
-    public void draw(@NonNull Canvas canvas) {
+    public void draw(Canvas canvas) {
         Rect bounds = getBounds();
         setTextSizeForWidth(bounds.width());
         Rect textBounds = new Rect();
@@ -76,11 +74,11 @@ class TextDrawable extends Drawable {
         mPaint.setColorFilter(filter);
     }
 
-    public void setTextColor(@ColorInt int color) {
+    public void setTextColor(int color) {
         mPaint.setColor(color);
     }
 
-    public void setShadowColor(@ColorInt int color) {
+    public void setShadowColor(int color) {
         mPaint.setShadowLayer(DEFAULT_SHADOW_RADIUS, 0, 0, color);
     }
 
