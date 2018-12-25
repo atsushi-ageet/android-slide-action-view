@@ -11,6 +11,7 @@ import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
@@ -314,6 +315,71 @@ public class SlideActionView extends View {
         if (array.hasValue(R.styleable.SlideActionView_slideactionview_paddingRightFactor))
             paddingRightFactor = array.getFloat(R.styleable.SlideActionView_slideactionview_paddingRightFactor, 0);
         array.recycle();
+    }
+
+    private Drawable getDrawable(int drawableId) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return getResources().getDrawable(drawableId, getContext().getTheme());
+        } else {
+            //noinspection deprecation
+            return getResources().getDrawable(drawableId);
+        }
+    }
+
+    public void setSliderBackgroundDrawable(int drawableId) {
+        setSliderBackgroundDrawable(getDrawable(drawableId));
+    }
+
+    public void setSliderBackgroundDrawable(Drawable drawable) {
+        sliderBg.drawable = drawable;
+    }
+
+    public void setSliderLeftDrawable(int drawableId) {
+        setSliderLeftDrawable(getDrawable(drawableId));
+    }
+
+    public void setSliderLeftDrawable(Drawable drawable) {
+        sliderL.drawable = drawable;
+    }
+
+    public void setSliderRightDrawable(int drawableId) {
+        setSliderRightDrawable(getDrawable(drawableId));
+    }
+
+    public void setSliderRightDrawable(Drawable drawable) {
+        sliderR.drawable = drawable;
+    }
+
+    public void setSliderDescription(int descriptionId) {
+        sliderDesc.drawable = new TextDrawable(getResources().getString(descriptionId));
+    }
+
+    public void setSliderDescription(String description) {
+        sliderDesc.drawable = new TextDrawable(description);
+    }
+
+    public void setSliderLeftDescription(int descriptionId) {
+        sliderLeftDesc.drawable = new TextDrawable(getResources().getString(descriptionId));
+    }
+
+    public void setSliderLeftDescription(String description) {
+        sliderLeftDesc.drawable = new TextDrawable(description);
+    }
+
+    public void setSliderRightDescription(int descriptionId) {
+        sliderRightDesc.drawable = new TextDrawable(getResources().getString(descriptionId));
+    }
+
+    public void setSliderRightDescription(String description) {
+        sliderRightDesc.drawable = new TextDrawable(description);
+    }
+
+    public void setPaddingLeftFactor(float padding) {
+        paddingLeftFactor = padding;
+    }
+
+    public void setPaddingRightFactor(float padding) {
+        paddingLeftFactor = padding;
     }
 
     public void reset() {
