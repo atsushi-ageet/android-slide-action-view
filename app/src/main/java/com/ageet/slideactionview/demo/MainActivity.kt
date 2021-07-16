@@ -1,17 +1,15 @@
 package com.ageet.slideactionview.demo
 
 import android.os.Bundle
-import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ageet.slideactionview.SlideActionView
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private fun getView(): View? {
-        return findViewById(android.R.id.content)
-    }
+    private val slideActionView: SlideActionView by lazy { findViewById(R.id.slideActionView) }
+    private val resetButton: Button by lazy { findViewById(R.id.resetButton) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
