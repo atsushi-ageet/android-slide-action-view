@@ -1,9 +1,9 @@
 package com.ageet.slideactionview.demo
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.ageet.slideactionview.SlideActionView
 import kotlinx.android.synthetic.main.activity_main.*
 
