@@ -78,14 +78,16 @@ public class SlideActionView extends View {
                 move(drawable, DURATION_MOVE_SLIDER, position);
             } else if (state == State.COMPLETE_SLIDER_LEFT || state == State.COMPLETE_SLIDER_RIGHT) {
                 Slider slider = state == State.COMPLETE_SLIDER_LEFT ? sliderL : sliderR;
-                if (slider.isEnableCompleteAnimation) {
+                if (slider.completeToCenter) {
                     temporaryRect.set(slider.position);
-                    temporaryRect.inset(-slider.marginHorizontal, -slider.marginVertical);
                     temporaryRect.offsetTo(
                             contentPlace.centerX() - temporaryRect.width() / 2,
                             contentPlace.centerY() - temporaryRect.height() / 2);
-                    move(sliderBg.drawable, DURATION_COMPLETE_SLIDER, temporaryRect);
+                } else {
+                    temporaryRect.set(slider.target);
                 }
+                temporaryRect.inset(-slider.marginHorizontal, -slider.marginVertical);
+                move(sliderBg.drawable, DURATION_COMPLETE_SLIDER, temporaryRect);
             }
         }
     }
@@ -95,7 +97,7 @@ public class SlideActionView extends View {
         Rect target = new Rect();
         int marginHorizontal = dip(4);
         int marginVertical = dip(4);
-        boolean isEnableCompleteAnimation = true;
+        boolean completeToCenter = true;
 
         boolean performDrop(Point point) {
             if (checkSlideComplete(point)) {
@@ -152,9 +154,13 @@ public class SlideActionView extends View {
             if (state == State.NORMAL) {
                 move(drawable, DURATION_MOVE_SLIDER, position);
                 show(drawable, DURATION_SHOW_SLIDER);
-            } else if ((state == State.COMPLETE_SLIDER_LEFT || state == State.COMPLETE_SLIDER_RIGHT) && isEnableCompleteAnimation) {
-                temporaryRect.set(position);
-                temporaryRect.offsetTo(contentPlace.centerX() - getWidth() / 2, position.top);
+            } else if ((state == State.COMPLETE_SLIDER_LEFT || state == State.COMPLETE_SLIDER_RIGHT)) {
+                if (completeToCenter) {
+                    temporaryRect.set(position);
+                    temporaryRect.offsetTo(contentPlace.centerX() - getWidth() / 2, position.top);
+                } else {
+                    temporaryRect.set(target);
+                }
                 move(drawable, DURATION_COMPLETE_SLIDER, temporaryRect);
             }
         }
@@ -321,8 +327,8 @@ public class SlideActionView extends View {
             paddingLeftFactor = array.getFloat(R.styleable.SlideActionView_slideactionview_paddingLeftFactor, 0);
         if (array.hasValue(R.styleable.SlideActionView_slideactionview_paddingRightFactor))
             paddingRightFactor = array.getFloat(R.styleable.SlideActionView_slideactionview_paddingRightFactor, 0);
-        if (array.hasValue(R.styleable.SlideActionView_slideactionview_enableCompleteAnimation))
-            sliderL.isEnableCompleteAnimation = sliderR.isEnableCompleteAnimation = array.getBoolean(R.styleable.SlideActionView_slideactionview_enableCompleteAnimation, false);
+        if (array.hasValue(R.styleable.SlideActionView_slideactionview_completeToCenter))
+            sliderL.completeToCenter = sliderR.completeToCenter = array.getBoolean(R.styleable.SlideActionView_slideactionview_completeToCenter, false);
         array.recycle();
     }
 
@@ -391,8 +397,8 @@ public class SlideActionView extends View {
         paddingLeftFactor = padding;
     }
 
-    public void setEnableCompleteAnimation(boolean enableCompleteAnimation) {
-        sliderL.isEnableCompleteAnimation = sliderR.isEnableCompleteAnimation = enableCompleteAnimation;
+    public void setCompleteToCenter(boolean completeToCenter) {
+        sliderL.completeToCenter = sliderR.completeToCenter = completeToCenter;
     }
 
     public void reset() {

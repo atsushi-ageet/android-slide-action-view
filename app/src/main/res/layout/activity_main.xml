@@ -28,6 +28,6 @@
         app:slideactionview_sliderBackground="@drawable/slider_bg"
         app:slideactionview_sliderRight="@drawable/slider_right"
         app:slideactionview_sliderLeft="@drawable/slider_left"
-        app:slideactionview_enableCompleteAnimation="true" />
+        app:slideactionview_completeToCenter="true" />
 
 </FrameLayout>
