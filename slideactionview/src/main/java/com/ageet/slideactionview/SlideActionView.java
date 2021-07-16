@@ -445,6 +445,7 @@ public class SlideActionView extends View {
         debug("onTouchEvent " + event.getAction());
         touchPoint.set((int) event.getX(), (int) event.getY());
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            getParent().requestDisallowInterceptTouchEvent(true);
             switch (state) {
                 case NORMAL:
                     if (sliderL.checkSlideStart(touchPoint)) {
@@ -461,6 +462,7 @@ public class SlideActionView extends View {
                 case DRAG_SLIDER_RIGHT:
             }
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
+            getParent().requestDisallowInterceptTouchEvent(false);
             switch (state) {
                 case DRAG_SLIDER_LEFT:
                     if (sliderL.performDrop(touchPoint)) {
