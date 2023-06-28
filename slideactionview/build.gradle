@@ -1,12 +1,18 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
+}
+
 android {
-    compileSdkVersion 30
+    namespace = "com.ageet.slideactionview"
+    compileSdk 33
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 30
+        minSdk 19
         versionCode 1
         versionName "1.0"
 
@@ -19,18 +25,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    
-    libraryVariants.all {
-        generateBuildConfig.enabled = false
-    }
 
     resourcePrefix 'slideactionview_'
+
+    publishing {
+        singleVariant("release")
+    }
 }
 
 dependencies {
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
 
 afterEvaluate {
