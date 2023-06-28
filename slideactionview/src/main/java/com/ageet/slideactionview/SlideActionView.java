@@ -451,39 +451,43 @@ public class SlideActionView extends View {
         debug("onTouchEvent " + event.getAction());
         touchPoint.set((int) event.getX(), (int) event.getY());
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            getParent().requestDisallowInterceptTouchEvent(true);
             switch (state) {
                 case NORMAL:
                     if (sliderL.checkSlideStart(touchPoint)) {
+                        getParent().requestDisallowInterceptTouchEvent(true);
                         debug("left active");
                         touchGap = Math.max(touchPoint.x - sliderL.position.centerX(), 0);
                         setState(State.DRAG_SLIDER_LEFT);
+                        return true;
                     } else if (sliderR.checkSlideStart(touchPoint)) {
+                        getParent().requestDisallowInterceptTouchEvent(true);
                         debug("right active");
                         touchGap = Math.min(touchPoint.x - sliderR.position.centerX(), 0);
                         setState(State.DRAG_SLIDER_RIGHT);
+                        return true;
                     }
                     break;
                 case DRAG_SLIDER_LEFT:
                 case DRAG_SLIDER_RIGHT:
             }
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
-            getParent().requestDisallowInterceptTouchEvent(false);
             switch (state) {
                 case DRAG_SLIDER_LEFT:
+                    getParent().requestDisallowInterceptTouchEvent(false);
                     if (sliderL.performDrop(touchPoint)) {
                         setState(State.COMPLETE_SLIDER_LEFT);
                     } else {
                         setState(State.NORMAL);
                     }
-                    break;
+                    return true;
                 case DRAG_SLIDER_RIGHT:
+                    getParent().requestDisallowInterceptTouchEvent(false);
                     if (sliderR.performDrop(touchPoint)) {
                         setState(State.COMPLETE_SLIDER_RIGHT);
                     } else {
                         setState(State.NORMAL);
                     }
-                    break;
+                    return true;
                 case NORMAL:
             }
             performClick();
@@ -500,7 +504,7 @@ public class SlideActionView extends View {
                     }
                     sliderL.performMove(sliderCenter);
                     invalidate();
-                    break;
+                    return true;
                 case DRAG_SLIDER_RIGHT:
                     if (sliderR.position.centerX() < sliderCenter.x) {
                         sliderCenter.x = sliderR.position.centerX();
@@ -511,12 +515,11 @@ public class SlideActionView extends View {
                     }
                     sliderR.performMove(sliderCenter);
                     invalidate();
-                    break;
+                    return true;
                 case NORMAL:
             }
         }
-        invalidate();
-        return true;
+        return false;
     }
 
     @Override
