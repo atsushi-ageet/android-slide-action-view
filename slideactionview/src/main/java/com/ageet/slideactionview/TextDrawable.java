@@ -51,7 +51,7 @@ class TextDrawable extends Drawable {
         setTextSizeForWidth(bounds.width());
         Rect textBounds = new Rect();
         mPaint.getTextBounds(mText, 0, mText.length(), textBounds);
-        canvas.drawText(mText, bounds.centerX(), bounds.centerY() + textBounds.height() / 2, mPaint);
+        canvas.drawText(mText, bounds.centerX(), bounds.centerY() - ((mPaint.descent() + mPaint.ascent()) / 2), mPaint);
     }
     @Override
     public int getOpacity() {
