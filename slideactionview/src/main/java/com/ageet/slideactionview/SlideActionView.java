@@ -347,6 +347,7 @@ public class SlideActionView extends View {
 
     public void setSliderBackgroundDrawable(Drawable drawable) {
         sliderBg.drawable = drawable.mutate();
+        requestLayout();
     }
 
     public void setSliderLeftDrawable(int drawableId) {
@@ -355,6 +356,7 @@ public class SlideActionView extends View {
 
     public void setSliderLeftDrawable(Drawable drawable) {
         sliderL.drawable = drawable.mutate();
+        requestLayout();
     }
 
     public void setSliderRightDrawable(int drawableId) {
@@ -363,42 +365,52 @@ public class SlideActionView extends View {
 
     public void setSliderRightDrawable(Drawable drawable) {
         sliderR.drawable = drawable.mutate();
+        requestLayout();
     }
 
     public void setSliderDescription(int descriptionId) {
         sliderDesc.drawable = new TextDrawable(getResources().getString(descriptionId));
+        requestLayout();
     }
 
     public void setSliderDescription(String description) {
         sliderDesc.drawable = new TextDrawable(description);
+        requestLayout();
     }
 
     public void setSliderLeftDescription(int descriptionId) {
         sliderLeftDesc.drawable = new TextDrawable(getResources().getString(descriptionId));
+        requestLayout();
     }
 
     public void setSliderLeftDescription(String description) {
         sliderLeftDesc.drawable = new TextDrawable(description);
+        requestLayout();
     }
 
     public void setSliderRightDescription(int descriptionId) {
         sliderRightDesc.drawable = new TextDrawable(getResources().getString(descriptionId));
+        requestLayout();
     }
 
     public void setSliderRightDescription(String description) {
         sliderRightDesc.drawable = new TextDrawable(description);
+        requestLayout();
     }
 
     public void setPaddingLeftFactor(float padding) {
         paddingLeftFactor = padding;
+        requestLayout();
     }
 
     public void setPaddingRightFactor(float padding) {
         paddingLeftFactor = padding;
+        requestLayout();
     }
 
     public void setCompleteToCenter(boolean completeToCenter) {
         sliderL.completeToCenter = sliderR.completeToCenter = completeToCenter;
+        requestLayout();
     }
 
     public void reset() {
