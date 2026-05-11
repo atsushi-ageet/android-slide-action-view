@@ -500,9 +500,15 @@ public class SlideActionView extends View {
                         setState(State.NORMAL);
                     }
                     return true;
-                case NORMAL:
             }
-            performClick();
+        } else if (event.getAction() == MotionEvent.ACTION_CANCEL) {
+            switch (state) {
+                case DRAG_SLIDER_LEFT:
+                case DRAG_SLIDER_RIGHT:
+                    getParent().requestDisallowInterceptTouchEvent(false);
+                    setState(State.NORMAL);
+                    return true;
+            }
         } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
             Point sliderCenter = new Point((int) (touchPoint.x - touchGap), contentPlace.centerY());
             switch (state) {
